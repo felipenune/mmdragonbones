@@ -331,7 +331,7 @@ void MMDragonBones::fade_in(const String& _name_anim, float _time, int _loop, in
         if(!b_playing)
         {
             b_playing = true;
-                _set_process(true);
+            _set_process(true);
         }
     }
 }
@@ -842,7 +842,7 @@ void MMDragonBones::_bind_methods()
     ClassDB::bind_method(D_METHOD("play", "turn_on"), &MMDragonBones::play);
     ClassDB::bind_method(D_METHOD("play_from_time"), &MMDragonBones::play_from_time);
 	ClassDB::bind_method(D_METHOD("play_from_progress"), &MMDragonBones::play_from_progress);
-	ClassDB::bind_method(D_METHOD("play_new_animation"), &MMDragonBones::play_new_animation);
+	ClassDB::bind_method(D_METHOD("play_new_animation", "anim_name", "loop"), &MMDragonBones::play_new_animation, DEFVAL(-1));
 	ClassDB::bind_method(D_METHOD("play_new_animation_from_progress"), &MMDragonBones::play_new_animation_from_progress);
 	ClassDB::bind_method(D_METHOD("play_new_animation_from_time"), &MMDragonBones::play_new_animation_from_time);
 

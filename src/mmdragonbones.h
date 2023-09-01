@@ -30,7 +30,7 @@ class MMDragonBonesResource : public Resource
 
 class MMDragonBones : public GDOwnerNode
 {
-GDCLASS(MMDragonBones, GDOwnerNode);
+	GDCLASS(MMDragonBones, GDOwnerNode);
 
 private:
 	GDFactory*                  p_factory;
@@ -124,13 +124,13 @@ public:
 	/* deprecated */ bool is_playing() const;
 	/* deprecated */ void play_from_time(float _f_time);
 	/* deprecated */ void play_from_progress(float _f_progress);
-	/* deprecated */ void play_new_animation(const String &_str_anim, int _num_times);
+	/* deprecated */ void play_new_animation(const String &_str_anim, int _num_times = -1);
 	/* deprecated */ void play_new_animation_from_progress(const String &_str_anim, int _num_times, float _f_progress);
 	/* deprecated */ void play_new_animation_from_time(const String &_str_anim, int _num_times, float _f_time);
 	/* deprecated */ void stop(bool _b_all = false);
 	/* deprecated */ inline void stop_all() { stop(true); }
 
-	GDArmatureDisplay *get_armature();
+	GDArmatureDisplay *get_armature();	
 
 private:
 	const DragonBonesData *get_dragonbones_data() const;
@@ -143,7 +143,7 @@ public:
 	virtual Ref<Resource> load(const String &p_path, const String &p_original_path = "", Error *r_error = nullptr, bool p_use_sub_threads = false, float *r_progress = nullptr, CacheMode p_cache_mode = CACHE_MODE_REUSE);
 	virtual void get_recognized_extensions(List<String> *p_extensions) const;
 	virtual bool handles_type(const String &p_type) const;
-	virtual String get_resource_type(const String &p_path) const;
+	virtual String get_resource_type(const String &p_path) const;	
 };
 
 #endif // mmdragonbones_H
