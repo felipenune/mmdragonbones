@@ -95,9 +95,9 @@ bool GDArmatureDisplay::has_animation(const String &_animation_name) {
 Array GDArmatureDisplay::get_animations() {
 	Array animations{};
 
-	const ArmatureData *data = p_armature->getArmatureData();
+	const ArmatureData *armature_data = p_armature->getArmatureData();
 
-	for (std::string animation_name : data->getAnimationNames()) {
+	for (std::string animation_name : armature_data->getAnimationNames()) {
 		animations.push_back(String(animation_name.c_str()));
 	}
 
@@ -276,12 +276,12 @@ Dictionary GDArmatureDisplay::get_ik_constraints() {
 	return dict;
 }
 
-void GDArmatureDisplay::set_ik_constraint(const String &name, Vector2 position){
+void GDArmatureDisplay::set_ik_constraint(const String &name, Vector2 new_position){
 	for (dragonBones::Constraint *constraint : getArmature()->_constraints) {
 		if (constraint->getName() == name.ascii().get_data()) {
 			dragonBones::BoneData *target = const_cast<BoneData *>(constraint->_constraintData->target);
-			target->transform.x = position.x;
-			target->transform.y = position.y;
+			target->transform.x = new_position.x;
+			target->transform.y = new_position.y;
 
 			constraint->_constraintData->setTarget(target);
 			constraint->update();

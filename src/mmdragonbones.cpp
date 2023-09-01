@@ -191,14 +191,14 @@ void MMDragonBones::dispatch_event(const String &_str_type, const EventObject* _
 		int int_val = 0;
 		int float_val = 0;
 		const char *string_val = std::string("").c_str();
-		UserData* data = _p_value->getData();
+		UserData* user_data = _p_value->getData();
 		Armature* armature = _p_value->getArmature();
 
-		if (data != NULL) {
+		if (user_data != NULL) {
 				int_val = _p_value->getData()->getInt(0);
 				float_val = _p_value->getData()->getFloat(0);
 
-				if (!data->getStrings().empty()) {
+				if (!user_data->getStrings().empty()) {
 					string_val = _p_value->getData()->getString(0).c_str();
 				}
 		}
@@ -591,13 +591,13 @@ Color MMDragonBones::get_slot_display_color_multiplier(const String &_slot_name)
 		WARN_PRINT("Slot " + _slot_name + " doesn't exist");
 		return Color(-1,-1,-1,-1);
 	}
-	ColorTransform transform(p_armature->getSlot(_slot_name.ascii().get_data())->_colorTransform);
+	ColorTransform color_transform(p_armature->getSlot(_slot_name.ascii().get_data())->_colorTransform);
 
 	Color return_color;
-	return_color.r = transform.redMultiplier;
-	return_color.g = transform.greenMultiplier;
-	return_color.b = transform.blueMultiplier;
-	return_color.a = transform.alphaMultiplier;
+	return_color.r = color_transform.redMultiplier;
+	return_color.g = color_transform.greenMultiplier;
+	return_color.b = color_transform.blueMultiplier;
+	return_color.a = color_transform.alphaMultiplier;
 	return return_color;
 }
 
@@ -699,18 +699,18 @@ void MMDragonBones::stop(bool _b_all)
 }
 
 const DragonBonesData *MMDragonBones::get_dragonbones_data() const {
-	const DragonBonesData* data = this->p_armature->getArmature()->getArmatureData()->getParent();
-	return data;
+	const DragonBonesData* db_data = this->p_armature->getArmature()->getArmatureData()->getParent();
+	return db_data;
 }
 
 ArmatureData* MMDragonBones::get_armature_data(const String &_armature_name) {
-	std::map<std::string, ArmatureData *>::const_iterator data = get_dragonbones_data()->armatures.find(_armature_name.ascii().get_data());
+	std::map<std::string, ArmatureData *>::const_iterator armature_data = get_dragonbones_data()->armatures.find(_armature_name.ascii().get_data());
 
-	if (data == get_dragonbones_data()->armatures.end()) {
+	if (armature_data == get_dragonbones_data()->armatures.end()) {
 		return nullptr;
 	}
 
-	return data->second;
+	return armature_data->second;
 }
 
 GDArmatureDisplay *MMDragonBones::get_armature() {

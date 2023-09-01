@@ -32,3 +32,6 @@
 *.app
 /game/bin/dragonbones/*
 /.sconsign.dblite
+
+*.vs
+__pycache__/
