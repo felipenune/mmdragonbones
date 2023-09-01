@@ -58,8 +58,8 @@ void AnimationState::_onClear()
 
     _timelineDirty = 2;
     _playheadState = 0;
-    _fadeState = 0;
-    _subFadeState = 0;
+    _fadeState = -1;
+    _subFadeState = -1;
     _position = 0.0f;
     _duration = 0.0f;
     _fadeTime = 0.0f;
